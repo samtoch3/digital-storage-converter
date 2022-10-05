@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Editor</title>
+</head>
+
+<body>
+    <div id="editor" oninput="live()">&lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;html editor&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;Hello Everyone&lt;/h1&gt; &lt;/body&gt; &lt;/html&gt;
+    </div>
+    <iframe src="" id="viewer"></iframe>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.3/ace.js"></script>
+
+
+</body>
+
+</html>
+
+
+<script>
+    let editor = document.querySelector("#editor");
+
+    ace.edit(editor, {
+        theme: "ace/theme/cobalt",
+        mode: "ace/mode/html",
+        autoScrollEditorIntoView: true,
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true,
+
+    });
+
+    function live() {
+        var editor = document.getElementById("editor").value;
+        document.getElementById("viewer").srcdoc = editor;
+    }
+</script>
+
+<style>
+    #editor {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 50%;
+        border: 1px dashed yellow;
+    }
+    
+    #viewer {
+        position: absolute;
+        top: 55%;
+        height: 44%;
+        width: 93%;
+    }
+</style>
