@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Storage Convertor | By Samson Thibaut</title>
+    <link rel="icon" type="image/x-icon" href="storage.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: .5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline: 2px solid;
+            height: 100vh;
+            background-color: #317874;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.4rem;
+            color: #317874;
+        }
+        
+        section {
+            background-color: #e2d2f9;
+            width: fit-content;
+            padding: 2rem 4rem;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        }
+        
+        .divinput {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #input {
+            text-align: center;
+            padding: .8rem;
+            margin: 1rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #8fc0bd;
+            color: #000;
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+        
+        #result {
+            text-align: center;
+            pointer-events: none;
+            padding: .8rem;
+            margin: 1rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #8fc0bd;
+            color: #000;
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+        
+        #input:focus {
+            outline: 2px solid #317874
+        }
+        
+         ::placeholder {
+            opacity: .7;
+            color: #000;
+        }
+        
+        select {
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 1rem;
+            border: none;
+            color: #fff;
+            padding: .5rem;
+            background: #317874;
+            font-size: 1.5rem;
+        }
+        
+        select:hover {
+            outline: 2px solid #84b7b5;
+        }
+        
+        option {
+            background: #317874;
+            color: #fff;
+        }
+        
+        @media screen and (max-width:650px) {
+            h1 {
+                font-size: 2rem;
+            }
+            section {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            select {
+                font-size: 1rem;
+                width: 30%;
+                margin: .5rem;
+            }
+            #input {
+                margin: .5rem;
+                font-size: 1rem;
+                width: 50%;
+            }
+            #result {
+                margin: .5rem;
+                font-size: 1rem;
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="text">
+            <h1>Data Conversion | Digital Storage Converter</h1>
+        </div>
+        <img src="store.png" alt="STORE" width="200px" height="150px" />
+        <br/>
+        <main>
+            <div class="divinput">
+                <input type="number" name="input" id="input" placeholder="Enter a Number" class="input">
+                <select name="inputOptions" id="inputOptions">
+                <option value="bit">Bit</option>
+                <option value="kb">Kibibit</option>
+                <option value="mb">Mebibit</option>
+                <option value="gb">Gibibit</option>
+                <option value="tb">Tebibit</option>
+            </select>
+            </div>
+
+            <div class="divinput">
+                <input type="text" name="result" id="result">
+                <select name="outputOptions" id="outputOptions">
+                <option value="bit">Bit</option>
+                <option value="kb">Kibibit</option>
+                <option value="mb">Mebibit</option>
+                <option value="gb">Gibibit</option>
+                <option value="tb">Tebibit</option>
+            </select>
+            </div>
+        </main>
+        <script>
+            const input = document.getElementById('input')
+            let result = document.getElementById('result')
+            const inputOptions = document.getElementById('inputOptions')
+            const outputOptions = document.getElementById('outputOptions')
+
+            function conversion() {
+                //Bit Conversion
+                if (inputOptions.value == "bit" && outputOptions.value == "bit") {
+                    result.value = input.value
+                } else if (inputOptions.value == "bit" && outputOptions.value == "kb") {
+                    result.value = (input.value / 1024)
+                } else if (inputOptions.value == "bit" && outputOptions.value == "mb") {
+                    result.value = (input.value / 1.049e+6)
+                } else if (inputOptions.value == "bit" && outputOptions.value == "gb") {
+                    result.value = (input.value / 1.074e+9)
+                } else if (inputOptions.value == "bit" && outputOptions.value == "tb") {
+                    result.value = (input.value / 1.1e+12)
+                }
+                //Kibibit Conversion
+                else if (inputOptions.value == "kb" && outputOptions.value == "bit") {
+                    result.value = (input.value * 1024)
+                } else if (inputOptions.value == "kb" && outputOptions.value == "kb") {
+                    result.value = input.value
+                } else if (inputOptions.value == "kb" && outputOptions.value == "mb") {
+                    result.value = (input.value / 1024)
+                } else if (inputOptions.value == "kb" && outputOptions.value == "gb") {
+                    result.value = (input.value / 1.049e+6)
+                } else if (inputOptions.value == "kb" && outputOptions.value == "tb") {
+                    result.value = (input.value / 1.074e+9)
+                }
+                //Mebibit Conversion
+                else if (inputOptions.value == "mb" && outputOptions.value == "bit") {
+                    result.value = (input.value * 1.049e+6)
+                } else if (inputOptions.value == "mb" && outputOptions.value == "kb") {
+                    result.value = (input.value * 1024)
+                } else if (inputOptions.value == "mb" && outputOptions.value == "mb") {
+                    result.value = input.value
+                } else if (inputOptions.value == "mb" && outputOptions.value == "gb") {
+                    result.value = (input.value / 1024)
+                } else if (inputOptions.value == "mb" && outputOptions.value == "tb") {
+                    result.value = (input.value / 1.049e+6)
+                }
+                //Gibibit Conversion
+                else if (inputOptions.value == "gb" && outputOptions.value == "bit") {
+                    result.value = (input.value * 1.074e+9)
+                } else if (inputOptions.value == "gb" && outputOptions.value == "kb") {
+                    result.value = (input.value * 1.049e+6)
+                } else if (inputOptions.value == "gb" && outputOptions.value == "mb") {
+                    result.value = (input.value * 1024)
+                } else if (inputOptions.value == "gb" && outputOptions.value == "gb") {
+                    result.value = input.value
+                } else if (inputOptions.value == "gb" && outputOptions.value == "tb") {
+                    result.value = (input.value / 1024)
+                }
+                //Tebibit Conversion
+                else if (inputOptions.value == "tb" && outputOptions.value == "bit") {
+                    result.value = (input.value * 1.1e+12)
+                } else if (inputOptions.value == "tb" && outputOptions.value == "kb") {
+                    result.value = (input.value * 1.074e+9)
+                } else if (inputOptions.value == "tb" && outputOptions.value == "mb") {
+                    result.value = (input.value * 1.049e+6)
+                } else if (inputOptions.value == "tb" && outputOptions.value == "gb") {
+                    result.value = (input.value * 1024)
+                } else if (inputOptions.value == "tb" && outputOptions.value == "tb") {
+                    result.value = (input.value)
+                }
+            }
+            setInterval(conversion, 0.1)
+        </script>
+
+    </section>
+</body>
+
+</html>
